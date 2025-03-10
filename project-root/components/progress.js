@@ -1,5 +1,5 @@
+import '../style.css';
 document.addEventListener('DOMContentLoaded', () => {
-
 
   const circle = document.querySelector('.progress-ring__circle');
   const input = document.getElementById('rangeInput');

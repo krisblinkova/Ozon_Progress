@@ -6,7 +6,7 @@ module.exports = {
   entry: './project-root/components/progress.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     clean: true, // Очищает папку вывода перед сборкой
   },
   module: {
@@ -34,7 +34,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'build'),
     compress: true,
     port: 8080,
     open: true, // Автоматически открывает браузер
