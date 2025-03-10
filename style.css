@@ -1,0 +1,156 @@
+html, body {
+    font-size: 62.5% ;
+    background-color: #f1f0f0;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    gap: 4rem;
+}     
+
+.progress-ring-container {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.toggle-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+/* Progress-bar */
+.progress-ring__circle {
+    transform-origin: center;
+    transform: rotate(-90deg);
+    transition: stroke-dashoffset 0.3s;
+}
+
+.progress-ring__circle::before {
+    transform-origin: center;
+    transform: rotate(-90deg);
+    transition: stroke-dashoffset 0.3s;
+}
+
+.progress-ring__circle::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: blue;
+    opacity: 0;
+}
+
+.percent {
+    display: flex;
+    text-align: center;
+    width: 4.7rem;
+    height: 2.7rem;
+    border-radius: 10rem;
+    border: 1px solid #74777a; 
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.toggle-bar__label {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+}
+
+/* ПЕРЕМЕННЫЕ / параметры трека */
+.gui-switch {
+    --track-size: calc(var(--thumb-size) * 2);
+    --thumb-size: 2.7rem;
+    --track-inactive: dee5ea;
+    --track-active: blue;
+    --track-color-inactive: var(--track-inactive);
+    --track-color-active: var(--track-active);
+    --track-padding: .2rem;
+
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+}
+
+/* Ползунок */
+.gui-switch > input {
+    --track-size: 5.1rem;
+    --thumb-size: 2.7rem;
+    --thumb-position: 0; 
+
+    appearance: none;
+    border: none;
+    padding: .2rem;
+    outline-offset: .5rem;
+    box-sizing: content-box;
+    inline-size: var(--track-size);
+    block-size: var(--thumb-size);
+    background-color: #dee5ea;
+    border-radius: 10rem;
+    flex-shrink: 0;
+    display: grid;
+    align-items: center;
+    grid: [track] 1fr / [track] 1fr;
+    margin: 0;
+}
+
+/* Стили для сенсорного экрана */
+.gui-switch {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*  Ползунок - начальное состояние */
+.gui-switch > input::before {   
+    content: "";
+    border: none;
+    grid-area: track;
+    inline-size:  var(--thumb-size);
+    block-size: var(--thumb-size);
+    background-color: #ffffff;
+    transition: .4s;
+    border-radius: 10rem;
+    transform: translateX(var(--thumb-position));
+}
+
+
+.gui-switch > input:checked {
+    --thumb-position: calc(var(--track-size) - 100%);
+    background-color: blue;
+}
+
+.gui-switch > input:checked {
+    --thumb-position: calc(var(--track-size) - 100%);
+    background-color: blue;
+}
+
+
+
+/* Убираем стрелочки у input[type="number"] в WebKit браузерах */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Убираем стрелочки у input[type="number"] в Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+
+

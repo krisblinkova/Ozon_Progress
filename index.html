@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="progress-ring-container">
+            <svg class ="progress-ring" width="120" height="120">
+
+                <circle class="progress-ring__track" stroke="#dee5ea" stroke-width="8" fill="transparent" cx="60" cy="60" r="52" />
+
+                <circle class="progress-ring__circle" stroke="blue" stroke-width="8" fill="transparent" cx="60" cy="60" r="52" />
+                
+                
+            </svg> 
+        </div>
+        
+        <div class="toggle-bar">
+            <label for="rangeInput" class="toggle-bar__label">
+                Value
+                <input type="number" id="rangeInput" class="percent" min="0" max="100" value="0">
+            </label>
+
+            <label for="switch" class="gui-switch">
+                Hide
+                <input type="checkbox" role="switch" aria-checked="true" id="switch" >
+            </label>
+
+            <label for="switch" class="gui-switch">
+                Animate
+                <input type="checkbox" role="switch" aria-checked="true" id="animate" >
+            </label>
+        </div>
+
+    </div>
+
+
+    <script src="code.js"></script>
+</body>
+</html>
