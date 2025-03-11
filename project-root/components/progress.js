@@ -1,5 +1,7 @@
+
 import '../style.css';
 document.addEventListener('DOMContentLoaded', () => {
+
 
   const circle = document.querySelector('.progress-ring__circle');
   const input = document.getElementById('rangeInput');
@@ -36,6 +38,7 @@ class Progress {
 
         // Идентификатор для анимационного интервала
         this.animationInterval = null;
+        this.currentRotation = 0;
 
         this.init();
       }
@@ -90,24 +93,17 @@ class Progress {
 
       animateProgress() {
         // Останавливаем предыдущую анимацию, если она запущена
-        if (this.animationInterval) {
-          clearInterval(this.animationInterval);
-        }
-        const start = Date.now(); //фиксируем время начала анимации
-        this.animationInterval = setInterval(() => {
-          let timePassed = Date.now() - start;
-          if (timePassed >= 10000) {
-            clearInterval(this.animationInterval);
-            this.animationInterval = null;
-            this.setProgress(100);
-            this.updatePercentDisplay(100);
-          } else {
-            const progressValue = (timePassed / 100).toFixed(0);
-            this.setProgress(progressValue);
-            this.updatePercentDisplay(progressValue);
-          }
-        }, 10);
+      if (this.animationInterval) {
+        clearInterval(this.animationInterval);
       }
+      // Сбрасываем текущий поворот
+      this.currentRotation = 0;
+      this.animationInterval = setInterval(() => {
+        this.currentRotation = (this.currentRotation + 2) % 360;
+        // Комбинируем базовый сдвиг -90° (чтобы начинать с 12 часов) и текущий поворот
+        this.circle.style.transform = `rotate(-90deg) rotate(${this.currentRotation}deg)`;
+      }, 10);
+    }
 
       toggleAnimation() {
         if (this.animationSwitch.checked) {
@@ -116,6 +112,8 @@ class Progress {
           if (this.animationInterval) {
             clearInterval(this.animationInterval);
             this.animationInterval = null;
+            // В режиме Normal возвращаем базовый поворот (-90°)
+          this.circle.style.transform = 'rotate(-90deg)';
           }
         }
       }
